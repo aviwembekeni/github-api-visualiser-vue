@@ -41,7 +41,7 @@ export default {
             <tr v-for="user in users" v-bind:key="user.id">
               <td>{{ user.login }}</td>
               <td>{{ user.type }}</td>
-              <td><img class="user-avatar" :src="user.avatar_url" alt="" width="50" height="50"></td>
+              <td><img class="avatar" :src="user.avatar_url" alt="" width="50" height="50"></td>
               <td><RouterLink :to="{ name: 'user', params: {username: user.login} }">View</RouterLink></td>
             </tr>
           </tbody>
@@ -53,7 +53,7 @@ export default {
 
 <style>
 
-.user-avatar {
+.avatar {
    
     -webkit-border-radius: 60px;
     -moz-border-radius: 60px;

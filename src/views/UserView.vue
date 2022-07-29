@@ -50,7 +50,7 @@ export default {
           </thead>
           <tbody>
             <tr>
-              <td><img class="user-avatar" :src="user?.avatar_url" alt="" width="50" height="50"></td>
+              <td><img class="avatar" :src="user?.avatar_url" alt="" width="50" height="50"></td>
               <td>{{ user?.login }}</td>
               <td>{{ user?.name ? user?.name: "No Name"}}</td>
               <td>{{ user?.bio }}</td>

@@ -35,26 +35,28 @@ export default {
     </section>
     <div class="container">
       <div >
-        <!-- <table >
+        <table>
           <thead>
             <tr>
+              <th>ID</th>
               <th>Profile Image</th>
               <th>Username</th>
-              <th>Fullname</th>
-              <th>Bio</th>
-              <th>Number of followers</th>
+              <th>Type Of User</th>
+              <!-- <th>Repos</th> -->
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><img class="user-avatar" :src="user?.avatar_url" alt="" width="50" height="50"></td>
-              <td>{{ user?.login }}</td>
-              <td>{{ user?.name ? user?.name: "No Name"}}</td>
-              <td>{{ user?.bio }}</td>
-              <td><RouterLink :to="{ name: 'followers', params: {username} }">Number of followers</RouterLink></td>
+            <tr v-for="f in following" v-bind:key="f.id">
+              <td>{{ f.id }}</td>
+              <td><img class="avatar" :src="f.avatar_url" alt="" width="50" height="50"></td>
+              <td>{{ f.login }}</td>
+              <td>{{ f.type }}</td>
+              <!-- <td>{{}}</td> -->
+              
+              <!-- <td><RouterLink :to="{ name: 'followers', params: {username} }">Number of followers</RouterLink></td> -->
             </tr>
           </tbody>
-        </table> -->
+        </table>
       </div>
     </div>
   </div>

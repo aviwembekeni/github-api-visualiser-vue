@@ -8,17 +8,17 @@ export default {
       Repos: null,
     };
   },
-    props:{
-      username:{
-        type: String,
-        required: true,
-      },
+  props:{
+    username:{
+      type: String,
+      required: true,
     },
-    created: function () {
-    axios.get(`https://api.github.com/users/${this.username}/repos`).then((response) => {
-      this.following = response.data;
-      console.log(this.repos);
-    });
+  },
+  created: function () {
+  axios.get(`https://api.github.com/users/${this.username}/repos`).then((response) => {
+    this.repos = response.data;
+    console.log(this.repos);
+  });
   },
 }
 </script>
@@ -35,26 +35,26 @@ export default {
     </section>
     <div class="container">
       <div >
-        <!-- <table >
+        <table >
           <thead>
             <tr>
-              <th>Profile Image</th>
-              <th>Username</th>
-              <th>Fullname</th>
+              <th>Name</th>
+              <th>Language</th>
+              <!-- <th>Fullname</th>
               <th>Bio</th>
-              <th>Number of followers</th>
+              <th>Number of followers</th> -->
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><img class="user-avatar" :src="user?.avatar_url" alt="" width="50" height="50"></td>
-              <td>{{ user?.login }}</td>
-              <td>{{ user?.name ? user?.name: "No Name"}}</td>
-              <td>{{ user?.bio }}</td>
-              <td><RouterLink :to="{ name: 'followers', params: {username} }">Number of followers</RouterLink></td>
+            <tr v-for="repo in repos" v-bind:key="repo.id">
+              <!-- <td><img class="user-avatar" :src="user?.avatar_url" alt="" width="50" height="50"></td> -->
+              <td>{{ repo.name != null? repo.name : repo.full_name }}</td>
+              <td>{{ repo.language }}</td>
+              <!-- <td>{{ user?.bio }}</td>
+              <td><RouterLink :to="{ name: 'followers', params: {username} }">Number of followers</RouterLink></td> -->
             </tr>
           </tbody>
-        </table> -->
+        </table>
       </div>
     </div>
   </div>
