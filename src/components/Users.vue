@@ -1,8 +1,23 @@
 <script>
+import axios from "axios";
+
+export default {
+  name: "Users",
+  data() {
+    return {
+      users: null,
+    };
+  },
+  created: function () {
+    axios.get("https://api.github.com/search/users?q=test&page=1&per_page=10").then((response) => {
+      this.users = response.data.items;
+    });
+  },
+};
 </script>
 
 <template>
-  <div class="">
+  <div class="users">
     <section class="">
       <div class="">
         <div class="container">
@@ -27,7 +42,7 @@
               <td>{{ user.login }}</td>
               <td>{{ user.type }}</td>
               <td><img class="user-avatar" :src="user.avatar_url" alt="" width="50" height="50"></td>
-              <td><RouterLink to="/user">View</RouterLink></td>
+              <td><RouterLink :to="{ name: 'user', params: {username: user.login} }">View</RouterLink></td>
             </tr>
           </tbody>
         </table>
@@ -35,24 +50,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import axios from "axios";
-
-export default {
-  name: "Repository",
-  data() {
-    return {
-      users: null,
-    };
-  },
-  created: function () {
-    axios.get("https://api.github.com/search/users?q=test&page=1&per_page=10").then((response) => {
-      this.users = response.data.items;
-    });
-  },
-};
-</script>
 
 <style>
 
